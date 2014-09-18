@@ -11,21 +11,39 @@
 
     <main>
     	<div class="jumbotron">
-	 		<form role="form">
-	  			<div class="form-group">
-	  				<label for="inputEmail">Email Address</label>
-	  				<input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
-	  			</div>
+	 		<form class="form-horizontal" role="post" action="/">
+	  			<fieldset>
+		  			<div class="form-group">
+		  				<label class="col-md-4 control-label" for="inputEmail">Email Address</label>
+		  				<div class="col-md-4">
+		  					<input type="email" class="form-control input-md" id="inputEmail" placeholder="Enter email">
+		  				</div>
+		  			</div>
 
-	  			<div class="form-group">
-	  				<label for="inputPassword">Password</label>
-	  				<input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
-	  			</div>
-	  		
-	  			<div class="checkbox">
-	    			<label><input type="checkbox"> Remember Me</label>
-	  			</div>
-	  			<button type="submit" class="btn btn-default">Submit</button>
+		  			<div class="form-group">
+		  				<label class="col-md-4  control-label" for="inputPassword">Password</label>
+		  				<div class="col-md-4">
+		  					<input type="password" class="form-control input-md" id="inputPassword" placeholder="Enter password">
+		  				</div>
+		  			</div>
+		  			
+		  			<div class="form-group">	
+			  			<label class="col-md-4 control-label" for="inputcheck"></label>
+					  		<div  class="col-md-4">
+					  			<div class="checkbox">
+					    			<label for="inputCheck">
+					    			<input type="checkbox" id="inputCheck"> Remember Me</label>
+					  			</div>
+				  			</div>
+				  	</div>
+
+			  		<div class="form-group">
+				  		<label class="col-md-4 control-label" for="inputSubmit"></label>
+					  		<div class="col-md-4">
+				  				<button type="submit" class="btn btn-default" id="inputSubmit">Submit</button>
+				  			</div>
+			  		</div>
+			  	</fieldset>
 			</form>
      	</div>
     </main>
