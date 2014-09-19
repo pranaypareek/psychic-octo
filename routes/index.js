@@ -12,16 +12,35 @@ router.get('/about', function(req, res){
 });
 
 /* Takes the user to a signup form */
-router.get('/signup', function(req, res){
-	res.render('pages/signup');
+router.get('/signup2', function(req, res){
+	res.render('pages/signup2');
 });
 
-/* POST Add User Service */
-router.post('/createUser', function(req, res){
 
+router.post('/loginUser', function(req, res){
+
+	console.log("logging in user");
+	res.render('pages/loginUser', {x: req.body.inputEmail});
+});
+
+router.post('/stuff', function(req, res){
+	console.log("stuff");
+	function reD(){
+		res.redirect('pages/about');	
+	}
+});
+
+
+/* POST Add User Service */
+/*router.post('/createUser', function(req, res){
+	console.log("in createUser");
+	res.redirect('/index');
+	
+	//res.render('/loginUser', {x: "In through the create door"});
+	
 	//Setting internal DB variable
 	var db = req.db;
-
+	console.log("parsed db");
 	//Getting values from the form; relying on the name attributes of the items; from newuser.jade
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
@@ -41,6 +60,7 @@ router.post('/createUser', function(req, res){
 		"password": passwordInput
 
 	}, function(err, doc){
+			console.log("collection insertion");
 			if(err){
 				//Send an error message if an error is encountered
 				res.send("Problem adding to the DB");
@@ -48,10 +68,11 @@ router.post('/createUser', function(req, res){
 				//If successful, set the header bar to read /userlist instead of /adduser
 				res.location("Created Successfully");
 				//Then redirect to the success page
-				res.render('pages/success');
+				res.redirect('/about');
 			}
 		}	
-	);
-});
+	); 
+}); 
+*/
 
 module.exports = router;
