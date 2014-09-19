@@ -8,11 +8,20 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+
+//Mongo Stuff
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/logstuff1');
+
+
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
@@ -21,6 +30,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Making the DB accessible to the router
+app.use(function(req, res, next){
+    req.db = db;
+    next();
+});
+
 
 app.use('/', routes);
 app.use('/users', users);

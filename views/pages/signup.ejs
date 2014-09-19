@@ -1,0 +1,93 @@
+<!-- views/pages/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+	<header>
+		<% include ../partials/header%>
+	<main>
+		<div class="jumbotron">
+			
+			<form class="form-horizontal" method="post" action='/createUser'>
+				<fieldset>
+
+					<!-- Form Name -->
+					<legend>Sign-up Form</legend>
+
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="firstName">First Name</label>  
+					  <div class="col-md-4">
+					  <input name="firstName" type="text" placeholder="Enter first name" class="form-control input-md">
+					    
+					  </div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="lastName">Last Name</label>  
+					  <div class="col-md-4">
+					  <input name="lastName" placeholder="Enter second name" class="form-control input-md">
+					    
+					  </div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="userName">Username</label>  
+					  <div class="col-md-4">
+					  <input name="userName" type="text" placeholder="Type in to check if the username is available"
+					   class="form-control input-md">
+					    
+					  </div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="userEmail">Email</label>  
+					  <div class="col-md-4">
+					  <input name="userEmail" type="email" placeholder="Enter e-mail address" class="form-control input-md">
+					    
+					  </div>
+					</div>
+
+					<!-- Password input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="passwordInput">Password</label>
+					  <div class="col-md-4">
+					    <input name="passwordInput" type="password" placeholder="Enter a strong password" class="form-control input-md">
+					    
+					  </div>
+					</div>
+
+					<!-- Password input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="passwordConfirm">Confirm Password</label>
+					  <div class="col-md-4">
+					    <input name="passwordConfirm" type="password" placeholder="Enter password again" class="form-control input-md">
+					    
+					  </div>
+					</div>
+
+					<!-- Button -->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="signupSubmitButton"></label>
+					  <div class="col-md-4">
+					    <button type ="submit" name="signupSubmitButton" class="btn btn-primary">Submit</button>
+					  </div>
+					</div>
+
+				</fieldset>
+			</form>
+
+			
+		</div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+</body>
+</html>
