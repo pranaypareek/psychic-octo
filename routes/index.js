@@ -26,15 +26,16 @@ router.post('/loginUser', function(req, res){
 router.post('/stuff', function(req, res){
 	console.log("stuff");
 	function reD(){
-		res.redirect('pages/about');	
+		res.redirect('about');	
 	}
+	reD();
 });
 
 
 /* POST Add User Service */
-/*router.post('/createUser', function(req, res){
+router.post('/createUser', function(req, res){
 	console.log("in createUser");
-	res.redirect('/index');
+	//res.redirect('/index');
 	
 	//res.render('/loginUser', {x: "In through the create door"});
 	
@@ -45,7 +46,7 @@ router.post('/stuff', function(req, res){
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var userName = req.body.userName;
-	var email = req.body.email;
+	var email = req.body.userEmail;
 	var password =req.body.passwordInput;
 
 	//Getting the user collection from MongoDB
@@ -56,8 +57,8 @@ router.post('/stuff', function(req, res){
 		"firstName": firstName,
 		"lastName": lastName,
 		"userName": userName,
-		"userEmail" : userEmail,
-		"password": passwordInput
+		"userEmail" : email,
+		"password": password
 
 	}, function(err, doc){
 			console.log("collection insertion");
@@ -73,6 +74,6 @@ router.post('/stuff', function(req, res){
 		}	
 	); 
 }); 
-*/
+
 
 module.exports = router;
