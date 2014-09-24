@@ -3,7 +3,28 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('pages/index', { title: 'Here\'s logstuff1' });
+	
+	if(req.session.user){
+		res.render("pages/index", {x:"logged In"});	
+	}
+	else{
+		res.render("pages/index", {x:"logged out"});
+	}
+	
+    
+});
+
+router.get('/index', function(req, res) {
+	
+	res.render("pages/index");
+    
+});
+
+
+router.get('/goBack', function(req, res) {
+	
+	res.render("pages/index", {x:"logged In"});	
+    
 });
 
 /* GET about page. */
@@ -20,13 +41,80 @@ router.get('/signup2', function(req, res){
 router.post('/loginUser', function(req, res){
 
 	console.log("logging in user");
-	res.render('pages/loginUser', {x: req.body.inputEmail});
+	var db = req.db;
+	var form_userName = req.body.userName;
+	var form_password = req.body.inputPassword;
+	console.log("form_username: " + form_userName);
+	console.log("form_password: " + form_password);
+
+	var usercollection = db.get("usercollection");
+	
+	/*usercollection.find({"userName": form_userName}, function(err, data){
+		console.log(data);
+		console.log(data[0]['userName']);
+	});*/
+
+	usercollection.find({"userName": form_userName}, function(err, data){
+		if(err){
+			console.log("User not found");
+		}
+
+		//console.log("DATA________________>>>"+userName);
+		//var obj = JSON.parse(data);
+		//var au_userName = JSON.parse(data);
+		//console.log("---------------->"+au_userName.userName);
+		var au_userName=data[0]['userName'];
+		console.log("logging in "+ au_userName);
+		
+		usercollection.find({"userName" : au_userName}, {password:1}, function(err, result){
+			var au_password=result[0]['password'];
+
+			console.log("au_password: " + au_password);
+			console.log("form_password: " + form_password);
+
+			if(form_password == au_password){
+				console.log("------ matching passwords ------");
+				req.session.regenerate(function(){
+					req.session.user = au_userName;
+					req.session.success = 'Authenticated as ' + au_userName	;
+					console.log(req.session.success);
+					res.render('pages/loggedIn',{x: au_userName});
+				});
+			}else {
+				
+				req.session.error = 'Authentication Failed';
+				res.render('pages/index',{x:'incorrect password or username'});
+			}
+		});
+	});
+});
+
+function restrict(req, res, next){
+	if(req.session.user){
+		next();
+	} else {
+		req.session.error = 'Access denied!';
+		res.render('pages/restrictedArea', {x:"NOT ALLOWED"});
+		//res.send("Not accessible");
+		//res.redirect('/index');
+	}
+}
+
+router.get('/logOut', function(req, res){
+	req.session.destroy(function(){
+		res.render("pages/index",{x:"logged out"});
+	});
+});
+
+router.get('/restricted', restrict, function(req, res){
+	res.render('pages/restrictedArea', {x:"restricted area accessible after logging in"});
+	//res.send("restricted area accessible after logging in");
 });
 
 router.post('/stuff', function(req, res){
 	console.log("stuff");
 	function reD(){
-		res.redirect('about');	
+		res.redirect('/about');	
 	}
 	reD();
 });

@@ -2,7 +2,7 @@
 <html>
   <head>
     <% include ../partials/head %>
-    <title><%= title %></title>
+    <title></title>
   </head>
   <body class="container">
    	<header>
@@ -13,8 +13,9 @@
      	<div class="jumbotron">
 			<div>
 		 		
-		 		<p align="center">New to logstuff1?</p>
+		 		
 		 		<p align="center"><a href='/signup2'>Sign up!</a></p>
+		 		<p align="center"><%= x%></a></p>
 		 		
 	 		</div>     		
      	</div>
@@ -27,16 +28,16 @@
 	 		<form class="form-horizontal" method="post" action='/loginUser'>
 	  			<fieldset>
 		  			<div class="form-group">
-		  				<label class="col-md-4 control-label" for="inputEmail">Email Address</label>
+		  				<label class="col-md-4 control-label" for="userName">User Name</label>
 		  				<div class="col-md-4">
-		  					<input type="email" class="form-control input-md" name="inputEmail" id="inputEmail" placeholder="Enter email">
+		  					<input type="text" class="form-control input-md" name="userName" id="userName" placeholder="Enter username">
 		  				</div>
 		  			</div>
 
 		  			<div class="form-group">
 		  				<label class="col-md-4  control-label" for="inputPassword">Password</label>
 		  				<div class="col-md-4">
-		  					<input type="password" class="form-control input-md" id="inputPassword" placeholder="Enter password">
+		  					<input type="password" class="form-control input-md" name="inputPassword" id="inputPassword" placeholder="Enter password">
 		  				</div>
 		  			</div>
 		  			
